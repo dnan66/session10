@@ -1,6 +1,8 @@
 <template>
   <div class="about">
-    <h1>This is an About page for TEST </h1>
+    <h1>This is an About page <span v-if="sessionId">for Session: {{sessionId}}</span></h1>
+    <!--<router-view></router-view>-->
+    <p v-if="sessionQuery"> Query is {{sessionQuery}}</p>
     <button style="background-color: crimson;font-size: medium;color: white" v-on:click="showDModal">Open</button>
     <!-- CALL CHILD component using bind value for props-->
     <dialog-modal :show="show_on" v-bind:hasCloseFunction="true" v-on:check="countChecks" v-on:set="setKey" v-model="modelData"> <!-- v-model="modelData"-->
@@ -36,6 +38,21 @@
       },
       components: {
           DialogModal
+      },
+      watch: {
+          // react to the route change
+          /*
+          $route(to,from) {
+              alert('Route change, About component\nto: '+to.path+'\nfrom: '+from.path)
+          }*/
+      },
+      computed: {
+        sessionId() {
+            return this.$route.params.sid
+        },
+        sessionQuery() {
+           return Object.keys(this.$route.query).length === 0 ? null : this.$route.query
+        }
       },
       methods: {
           usingInputEvent(event){
