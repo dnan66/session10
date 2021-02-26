@@ -21,9 +21,10 @@
         },
         methods: {
             sendCredentials() {
-                alert('Credentials received ...')
-                this.$router.push('/',()=>{
-                    console.log('go to home page')
+                alert('Credentials sent ...')
+                console.log('jump from :',this.$route.path)
+                this.$router.push('/',() => {  // e.g. of using arrow function
+                    console.log('landing on page : ',this.$route.path)
                 })
             }
         }

@@ -7,8 +7,8 @@
 </template>
 <style lang="scss" scoped>
     .square {
-        height: 150px;
-        width: 150px;
+        height: 100px;
+        width: 100px;
         background-color: orange;
     }
 </style>

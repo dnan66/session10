@@ -2,33 +2,34 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
-//import Session from '../components/Session.vue'
-//import Login from '../components/Login.vue'
+import Session from '../components/Session.vue'
+import Login from '../components/Login.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
+const routes1 = [
   {
     path: '/',
-    //name: 'Home',
+    name: 'Home',
     component: Home
   },
     {
         path: '/about',
-        //name: 'About',
+        name: 'About',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
     },
+    /*
     {
     path: '/client_about/:sid',
-    //name: 'ClientAbout',
+    name: 'ClientAbout',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-    },
+    component: () => import('../views/About.vue'),
+    },*/
     {
         path: '/next_about',
         name: 'NextAbout',
@@ -45,8 +46,9 @@ const routes = [
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
     },
-    /*
-    {
+
+    {   // ******************************** implement NESTED routes
+
         path: '/client_about/:sid',
         //name: 'ClientAbout',
         // route level code-splitting
@@ -67,12 +69,31 @@ const routes = [
                 component: Login
             },
         ]
-    },*/
+    },
 
 ]
+const routes = [
+    {
+        path:'/',
+        components: {
+            default: () => import('../views/About.vue'),
+            first: () => import('../components/Login.vue'),
+            second: () => import('../components/Session.vue')
 
+        }
+    },
+    {
+        path:'/session',
+        components: {
+            default: () => import('../views/About.vue'),
+            first: () => import('../components/Calendar.vue'),
+            second: () => import('../components/Session.vue')
+        }
+    }
+]
+console.log(routes1)
 const router = new VueRouter({
-  routes
+    routes
 })
 
 export default router

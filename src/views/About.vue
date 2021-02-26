@@ -1,7 +1,8 @@
 <template>
   <div class="about">
-    <h1>This is an About page <span v-if="sessionId">for Session: {{sessionId}}</span></h1>
-    <!--<router-view></router-view>-->
+    <h3>This is an About page <span v-if="sessionId">for Session: {{sessionId}}</span></h3>
+    <!-- NESTED routes example -->
+    <router-view></router-view>
     <p v-if="sessionQuery"> Query is {{sessionQuery}}</p>
     <button style="background-color: crimson;font-size: medium;color: white" v-on:click="showDModal">Open</button>
     <!-- CALL CHILD component using bind value for props-->
@@ -40,10 +41,10 @@
           DialogModal
       },
       watch: {
-          // react to the route change
           /*
+          // react to the route change
           $route(to,from) {
-              alert('Route change, About component\nto: '+to.path+'\nfrom: '+from.path)
+              alert('Route change, About component\nto: '+to.path+'\nfrom: '+from.name)
           }*/
       },
       computed: {
