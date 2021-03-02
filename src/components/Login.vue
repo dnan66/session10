@@ -6,7 +6,8 @@
         <br>
         <input type="password" v-model="passw" placeholder="type password">
         <hr>
-        <button @click="sendCredentials">Send</button>
+        <button @click="sendCredentials">Login</button>
+
     </div>
     </body>
 </template>
@@ -17,13 +18,16 @@
             return {
                 name:null,
                 passw: null,
+                auth:false,
             }
         },
         methods: {
             sendCredentials() {
-                alert('Credentials sent ...')
+                alert('Credentials stored ...')
+                localStorage.setItem('login_name',this.name)
+                localStorage.setItem('passw',this.passw)
                 console.log('jump from :',this.$route.path)
-                this.$router.push('/',() => {  // e.g. of using arrow function
+                this.$router.push('/login',() => {  // e.g. of using arrow function for on complete
                     console.log('landing on page : ',this.$route.path)
                 })
             }

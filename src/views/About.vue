@@ -17,8 +17,8 @@
     <!-- without v-model , using *VALUE* bind and *INPUT* event-->
     <label for="name" style="color: green;font-weight: bold">Nume </label>
     <input type="text" id="name" v-bind:value="name" v-on:input="usingInputEvent($event)"> <!--"name=$event.target.value" -->
-    <hr>
     <button @click="setData"> Set </button>
+    <hr>
     <!-- v-model and component -->
   </div>
 </template>
@@ -41,11 +41,12 @@
           DialogModal
       },
       watch: {
-          /*
+
           // react to the route change
+
           $route(to,from) {
-              alert('Route change, About component\nto: '+to.path+'\nfrom: '+from.name)
-          }*/
+              console.log('Route change, About component\nto: '+to.path+'\nfrom: '+from.path)
+          }
       },
       computed: {
         sessionId() {

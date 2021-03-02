@@ -79,21 +79,51 @@ const routes = [
             default: () => import('../views/About.vue'),
             first: () => import('../components/Login.vue'),
             second: () => import('../components/Session.vue')
-
         }
     },
     {
         path:'/session',
+        //name: 'Session',
         components: {
             default: () => import('../views/About.vue'),
             first: () => import('../components/Calendar.vue'),
             second: () => import('../components/Session.vue')
+        },
+    },
+    {
+        path:'/session/:sid',
+        //name: 'Session',
+        components: {
+            default:() => import('../views/About.vue'),
+            first: () => import('../components/Calendar.vue')
+        },
+        alias: '/session/:sid/profile'
+    },
+    {
+        path:'/myredirect', redirect:'/',
+        name: 'Myredirect'
+    },
+    {
+        path:'/login',
+        name: 'Login',
+        components: {
+            default: () => import('../components/Login.vue')
         }
     }
 ]
 console.log(routes1)
 const router = new VueRouter({
     routes
+})
+// ********* GLOBAL before Guards
+
+let isAuth = true
+router.beforeEach((to, from, next) => {
+    if (to.name !== 'Login' && !isAuth){
+        alert('global before guard check')
+        next({ name: 'Login' })
+    }
+    else next()
 })
 
 export default router

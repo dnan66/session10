@@ -1,6 +1,8 @@
 <template>
     <div class="zone">
-        <h4>{{ c_date }}</h4>
+        <h4>Show Date</h4>
+        <h5>{{ c_date }}</h5>
+        <br>
     </div>
 </template>
 <script>
