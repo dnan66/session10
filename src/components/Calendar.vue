@@ -15,6 +15,10 @@
         },
         mounted() {
             this.c_date = new Date()
+            console.log('mounted component Calendar')
+        },
+        created() {
+            console.log('created component Calendar')
         }
     }
 </script>

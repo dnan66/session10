@@ -2,7 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 //import store from './store'
-//import Btn from'./button.js'
 
 Vue.config.productionTip = false
 
@@ -31,6 +30,7 @@ vm.version = 1.3
 // let's talk about Global API Vue/js 2.x
 /***** EXTEND or  *****/
 
+/*
 Vue.extend({  // create a new constructor - use to add new components in Vue instance
     template: '<p>{{nume}}-{{prenume}}#{{access}}</p>',
     data: function() {
@@ -41,6 +41,7 @@ Vue.extend({  // create a new constructor - use to add new components in Vue ins
         }
     }
 })
+*/
 
 
 

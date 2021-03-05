@@ -88,7 +88,7 @@ const routes = [
             default: () => import('../views/About.vue'),
             first: () => import('../components/Calendar.vue'),
             second: () => import('../components/Session.vue')
-        },
+        }
     },
     {
         path:'/session/:sid',
@@ -97,7 +97,15 @@ const routes = [
             default:() => import('../views/About.vue'),
             first: () => import('../components/Calendar.vue')
         },
-        alias: '/session/:sid/profile'
+        alias: '/session/:sid/alias',
+        //************************************* [on route definition ] ROUTE Guards: beforeEnter
+        //****************************** dedicated route logic ,  use cases: pre-fetching data ..
+
+        beforeEnter(to, from, next) {
+            console.log('Route guard beforeEnter, route matched : ',to.path)
+            next()
+        },
+
     },
     {
         path:'/myredirect', redirect:'/',
@@ -108,6 +116,20 @@ const routes = [
         name: 'Login',
         components: {
             default: () => import('../components/Login.vue')
+        },
+        /*
+        beforeEnter(to, from, next) {
+            console.log('Route guard beforeEnter /LOGIN route matched')
+            next()
+        }
+        */
+    },
+    {
+        path: '/profile/:value',
+        name: 'Profile',
+        components: {
+            default: () => import('../components/Calendar.vue'),
+            first: () => import('../components/Profile.vue')
         }
     }
 ]
@@ -115,15 +137,27 @@ console.log(routes1)
 const router = new VueRouter({
     routes
 })
-// ********* GLOBAL before Guards
 
+// ********* [on instance] GLOBAL Guards: beforeEach, beforeResolve, afterEach  -> called each time the URL changes
+//*********************************  routes common logic , actions done when ...
 let isAuth = true
+//*************************************** use cases: role base , authorization , protection
 router.beforeEach((to, from, next) => {
+    console.log('Global guard: beforeEach, new route navigation start')
     if (to.name !== 'Login' && !isAuth){
-        alert('global before guard check')
+        console.log('Global guard: beforeEach , go to Login if not auth')
         next({ name: 'Login' })
     }
     else next()
 })
 
+router.beforeResolve((to,from,next) => {
+    console.log('Global guard: beforeResolve, route resolved')
+    next()
+})
+
+//******************************* use cases: views , tracking pages
+router.afterEach((to) => {
+    console.log('Global guard: afterEach ...everything is resolved for route: ', to.path)
+})
 export default router

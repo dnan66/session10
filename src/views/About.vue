@@ -43,10 +43,10 @@
       watch: {
 
           // react to the route change
-
+          /*
           $route(to,from) {
               console.log('Route change, About component\nto: '+to.path+'\nfrom: '+from.path)
-          }
+          }*/
       },
       computed: {
         sessionId() {

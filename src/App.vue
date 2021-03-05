@@ -18,10 +18,15 @@
       <!-- Named Views , multiple views -->
 
       <router-link to="/">Start</router-link> |
+      <router-link to="/login">Login</router-link> |
       <router-link to="/session">Session</router-link> |
       <!-- using REDiRECT and ALIAS -->
       <router-link to="/myredirect">MyRedirect</router-link> |
-      <router-link to="/session/5/profile">MyAlias</router-link>
+      <router-link to="/session/5/alias">MyAlias</router-link> |
+      <router-link to="/session/21">Session 21</router-link> |
+      <router-link to="/session/22">Session 22</router-link> |
+      <router-link to="/profile/manager">Profile</router-link>
+
       <p>....App component</p>
     </div>
     <hr>
