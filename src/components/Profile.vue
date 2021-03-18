@@ -2,6 +2,7 @@
     <div>
         <h2>{{typeProfile}} Profile </h2>
         {{profile_val}}
+        <h3 style="background-color: black;color: yellow">Level - {{level}}</h3>
         <hr>
         <label for="profile">New profile</label> &nbsp;&nbsp;
         <input type="text" id="profile" v-model="nprofile">
@@ -16,12 +17,14 @@
         data() {
             return {
                 typeProfile : null,
-                nprofile:null
+                nprofile:null,
+                level:100
             }
         },
         mounted(){
             this.typeProfile = 'BackEnd'
             console.log('mounted component Profile  ')
+            this.level= this.$store.getters.getLevel
         },
         created() {
             console.log('created component Profile')

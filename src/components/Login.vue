@@ -7,7 +7,17 @@
         <input type="password" v-model="passw" placeholder="type password">
         <hr>
         <button @click="sendCredentials">Login</button>
+        <br>
+        <br>
+        <label for="roles" style="color: white">Roles </label>
+       <select id="roles" v-model="role_selected">
+           <option disabled value="">Please select one</option>
+           <option v-for="r in roles " :key="r.index">{{r}}</option>
+       </select>
+        <br><br>
+        <span style="color: white;font-family: 'American Typewriter';font-weight: bold">{{ role_selected }}</span>
 
+        <br><span style="color: yellow">Level:{{level}}</span>
     </div>
     </body>
 </template>
@@ -19,6 +29,27 @@
                 name:null,
                 passw: null,
                 auth:false,
+                roles:[],
+                role_selected:null,
+            }
+        },
+        mounted() {
+            this.roles = this.$store.getters.getRoles
+
+        },
+        computed: {
+            level() {
+                let level = 0
+
+                if(!this.role_selected) return 0
+
+                if (this.role_selected.match('SalesManager')) {
+                    this.$store.commit('setLevel',1)
+                    level =1
+                } else {
+                    this.$store.commit('setLevel',0)
+                }
+                return level
             }
         },
         methods: {
@@ -37,7 +68,7 @@
 <style lang="scss" scoped>
     .lcontainer {
         padding-top:20px;
-        height:200px;
+        height:250px;
         width:200px;
         background-color: crimson;
     }

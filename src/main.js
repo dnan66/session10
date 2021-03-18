@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-//import store from './store'
+import store from './store'
 
 Vue.config.productionTip = false
 
@@ -12,7 +12,7 @@ let mydata = {
 console.log(mydata)
 new Vue({
     router,
-    //store,
+    store,      //**** ES6 short notation , ES5 case -> store: store
     //el: '#app',
     data: mydata, // plain object or function when using in component
     render: h => h(App)
